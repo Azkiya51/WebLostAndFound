@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lost & Found — Web</title>
+    <meta name="description" content="Aplikasi Lost & Found sederhana" />
+    <!-- Gaya eksternal -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Lost &amp; Found</h1>
+            <nav aria-label="Utama">
+                <ul>
+                    <li><a href="#search">Cari</a></li>
+                    <li><a href="#report">Laporkan</a></li>
+                    <li><a href="#listings">Daftar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container">
+        <!-- Pencarian cepat -->
+        <section id="search" aria-labelledby="search-heading">
+            <h2 id="search-heading">Cari Barang</h2>
+            <form id="search-form">
+                <label for="query">Kata kunci</label>
+                <input id="query" name="query" type="search" placeholder="contoh: dompet, kunci..." />
+                <button type="submit">Cari</button>
+            </form>
+        </section>
+
+        <!-- Form pelaporan / penemuan -->
+        <section id="report" aria-labelledby="report-heading">
+            <h2 id="report-heading">Laporkan Barang Hilang / Ditemukan</h2>
+            <form id="report-form">
+                <div>
+                    <label for="type">Jenis</label>
+                    <select id="type" name="type">
+                        <option value="lost">Hilang</option>
+                        <option value="found">Ditemukan</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="title">Judul</label>
+                    <input id="title" name="title" type="text" required />
+                </div>
+                <div>
+                    <label for="description">Deskripsi</label>
+                    <textarea id="description" name="description" rows="4"></textarea>
+                </div>
+                <div>
+                    <label for="location">Lokasi</label>
+                    <input id="location" name="location" type="text" />
+                </div>
+                <div>
+                    <label for="photo">Foto (opsional)</label>
+                    <input id="photo" name="photo" type="file" accept="image/*" />
+                </div>
+                <button type="submit">Kirim</button>
+            </form>
+        </section>
+
+        <!-- Daftar barang -->
+        <section id="listings" aria-labelledby="listings-heading">
+            <h2 id="listings-heading">Daftar Barang</h2>
+            <!-- Placeholder untuk daftar yang akan diisi oleh JS -->
+            <ul id="items-list"></ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Lost &amp; Found</p>
+        </div>
+    </footer>
+
+    <!-- Skrip eksternal -->
+    <script src="app.js" defer></script>
+</body>
+</html>

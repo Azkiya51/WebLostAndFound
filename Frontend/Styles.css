@@ -1,0 +1,264 @@
+/* Styles.css
+    Kerangka CSS untuk proyek LostAndFound
+    Isi file ini disesuaikan dengan struktur HTML umum:
+    header, nav, main (hero, search, listings/cards), form (create/report), modal, footer
+*/
+
+/* ========== Variabel ========== */
+:root{
+  --bg: #f7f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --primary: #2563eb; /* biru */
+  --primary-600: #1d4ed8;
+  --danger: #ef4444;
+  --success: #10b981;
+  --glass: rgba(255,255,255,0.6);
+  --radius: 10px;
+  --shadow: 0 6px 18px rgba(16,24,40,0.08);
+  --max-width: 1100px;
+  --gutter: 1rem;
+  --transition: 200ms ease;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* ========== Reset & Base ========== */
+*,
+*::before,
+*::after{box-sizing: border-box}
+html,body,#root{height:100%}
+html {font-size:16px; -webkit-font-smoothing:antialiased}
+body{
+  margin:0;
+  font-family:var(--font-sans);
+  background:var(--bg);
+  color:#111827;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Remove default form styles */
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+
+/* ========== Layout helpers ========== */
+.container{
+  width:100%;
+  max-width:var(--max-width);
+  margin-inline:auto;
+  padding-inline:calc(var(--gutter) * 1.5);
+}
+
+/* Flex & Grid helpers */
+.row{display:flex;flex-wrap:wrap;gap:1rem}
+.col{flex:1 1 0}
+
+/* Center helpers */
+.center{display:flex;align-items:center;justify-content:center}
+
+/* ========== Header & Nav ========== */
+.site-header{
+  background:linear-gradient(90deg, rgba(37,99,235,0.06), transparent);
+  backdrop-filter: blur(6px);
+  padding:block 0.75rem;
+  border-bottom:1px solid rgba(15,23,42,0.03);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  justify-content:space-between;
+  height:72px;
+}
+.brand{
+  display:flex;
+  gap:0.75rem;
+  align-items:center;
+  text-decoration:none;
+  color:inherit;
+}
+.brand-logo{
+  width:44px;height:44px;border-radius:10px;background:var(--primary);
+  display:grid;place-items:center;color:#fff;font-weight:700;
+  box-shadow:var(--shadow);
+}
+
+/* Navigation */
+.nav{
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+}
+.nav a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:0.45rem 0.6rem;
+  border-radius:8px;
+}
+.nav a:hover{background:rgba(15,23,42,0.03);color:#111827}
+
+/* Primary action button */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  padding:0.5rem 0.9rem;
+  border-radius:8px;
+  border:0;
+  background:var(--primary);
+  color:#fff;
+  box-shadow:0 6px 18px rgba(37,99,235,0.12);
+  transition:transform var(--transition), box-shadow var(--transition);
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(37,99,235,0.14)}
+.btn.ghost{background:transparent;color:var(--primary);box-shadow:none;border:1px solid rgba(37,99,235,0.12)}
+
+/* ========== Hero / Search ========== */
+.hero{
+  padding-block:2rem;
+  padding-top:2.5rem;
+}
+.hero-inner{
+  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+  border-radius:var(--radius);
+  padding:1.25rem;
+  box-shadow:var(--shadow);
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  justify-content:space-between;
+}
+.hero h1{margin:0;font-size:1.25rem}
+.hero p{margin:0;color:var(--muted);font-size:0.95rem}
+
+/* Search bar */
+.search{
+  display:flex;
+  gap:0.5rem;
+  align-items:center;
+  width:100%;
+}
+.search input[type="text"]{
+  flex:1;
+  padding:0.65rem 0.9rem;
+  border-radius:10px;
+  border:1px solid rgba(15,23,42,0.06);
+  background:#fff;
+}
+.search select, .search button{padding:0.6rem 0.75rem;border-radius:10px;border:1px solid rgba(15,23,42,0.06);background:#fff}
+
+/* ========== Listings / Cards ========== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+}
+.card{
+  background:var(--card);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:transform var(--transition), box-shadow var(--transition);
+  display:flex;
+  flex-direction:column;
+}
+.card:hover{transform:translateY(-6px)}
+.card .media{
+  height:160px;
+  background:#e6eefc;
+  display:block;
+  object-fit:cover;
+}
+.card-body{
+  padding:0.9rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  flex:1;
+}
+.card-title{font-weight:600;font-size:1rem;margin:0}
+.card-meta{font-size:0.85rem;color:var(--muted)}
+.card-footer{display:flex;gap:0.5rem;align-items:center;justify-content:space-between;padding:0.75rem;border-top:1px solid rgba(15,23,42,0.03)}
+
+/* Badges */
+.badge{
+  display:inline-block;
+  padding:0.25rem 0.5rem;
+  border-radius:999px;
+  font-size:0.8rem;
+  color:#fff;
+  background:var(--muted);
+}
+.badge.lost{background:var(--danger)}
+.badge.found{background:var(--success)}
+
+/* ========== Forms (report/create) ========== */
+.form{
+  background:var(--card);
+  border-radius:12px;
+  padding:1rem;
+  box-shadow:var(--shadow);
+}
+.form-row{
+  display:flex;gap:0.75rem;margin-bottom:0.75rem;
+}
+.form-row .field{flex:1;display:flex;flex-direction:column;gap:0.35rem}
+.field label{font-size:0.85rem;color:var(--muted)}
+.field input[type="text"],
+.field textarea,
+.field select,
+.field input[type="file"]{
+  padding:0.6rem 0.75rem;border-radius:8px;border:1px solid rgba(15,23,42,0.06);
+  background:#fff;
+}
+.field textarea{min-height:120px;resize:vertical;}
+
+/* Small helper text */
+.helper{font-size:0.82rem;color:var(--muted)}
+
+/* ========== Modal ========== */
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(2,6,23,0.45);display:grid;place-items:center;z-index:60;
+}
+.modal{
+  background:var(--card);border-radius:12px;padding:1rem;max-width:720px;width:90%;box-shadow:0 20px 50px rgba(2,6,23,0.5)
+}
+
+/* ========== Footer ========== */
+.site-footer{
+  padding-block:1.25rem;margin-top:2rem;color:var(--muted);
+  border-top:1px solid rgba(15,23,42,0.03);
+}
+.footer-row{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+
+/* ========== Utility classes ========== */
+.text-muted{color:var(--muted)}
+.p-0{padding:0}
+.mt-1{margin-top:0.5rem}
+.mt-2{margin-top:1rem}
+.mb-1{margin-bottom:0.5rem}
+
+/* ========== Responsive ========== */
+@media (max-width:1000px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .hero-inner{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:640px){
+  .header-inner{height:64px;padding-inline:0.75rem}
+  .nav{display:none} /* simple hide for mobile; implement hamburger in HTML/JS */
+  .grid{grid-template-columns:1fr}
+  .search{flex-direction:column;align-items:stretch}
+  .card .media{height:180px}
+  .hero h1{font-size:1.05rem}
+}
+
+/* ========== Accessibility / Focus ========== */
+a:focus, button:focus, input:focus, textarea:focus{
+  outline:3px solid rgba(37,99,235,0.15);
+  outline-offset:2px;
+}
+
+/* End of Styles.css - sesuaikan lagi dengan struktur HTML Anda */
